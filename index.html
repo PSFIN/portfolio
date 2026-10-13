@@ -309,5 +309,39 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);paddin
   <footer>Shinod V.S. · WhatsApp +91 98099 70890 · info@psfinsolutions.com · QuickBooks Online, Xero, Excel, Google Sheets, Apps Script, Make, n8n</footer>
 </main>
 
+<script>
+(function(){
+  function send(path, title){
+    var gc=window.goatcounter;
+    if(gc && gc.count) gc.count({path:path, title:title, event:true});
+  }
+  // Contact and profile links
+  document.addEventListener('click', function(e){
+    var a=e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h=a.getAttribute('href')||'';
+    if(h.indexOf('wa.me/')>-1) send('click-whatsapp','WhatsApp tap');
+    else if(h.indexOf('mailto:')===0) send('click-email','Email tap');
+    else if(h.indexOf('tel:')===0) send('click-call','Call tap');
+    else if(h.indexOf('upwork.com')>-1) send('click-upwork','Upwork profile tap');
+  }, true);
+  // Project detail opens (via card click or a #pN link)
+  var last='';
+  function project(){
+    var id=location.hash.slice(1);
+    if(/^p\d+$/.test(id) && id!==last){
+      last=id;
+      var p=(window.PROJECTS||[]).find(function(x){return x.id===id});
+      send('project-'+id, 'Project: '+(p?p.title:id));
+    }
+    if(!id) last='';
+  }
+  window.addEventListener('hashchange', project);
+  var _r=history.replaceState;
+  history.replaceState=function(){ var r=_r.apply(this,arguments); setTimeout(project,0); return r; };
+  window.addEventListener('load', function(){ setTimeout(project,500); });
+})();
+</script>
+<script data-goatcounter="https://psfin.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
 </body>
 </html>
