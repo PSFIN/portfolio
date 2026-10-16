@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Virtual Assistant Services</title>
+<meta name="description" content="Virtual assistant services for small businesses in the US, UK and Australia, from $2 an hour. Admin, data entry, invoicing, inbox and research, run by a QuickBooks ProAdvisor and team.">
+<meta property="og:title" content="Virtual Assistant from $2/hour | Shinod Vengaloor &amp; team">
+<meta property="og:description" content="Admin, data entry, invoicing, inbox and research for small businesses. Message us on WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://psfin.github.io/portfolio/va/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --paper:#F3F6F5; --sheet:#FFFFFF; --ink:#15233A; --muted:#55627A; --rule:#D5DEDB;
+  --tick:#1C7A57; --tick-soft:#E2F1EA; --navy:#1B2E52; --gold:#F5B21B;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1622; --sheet:#162132; --ink:#E6ECF4; --muted:#9AA8BD; --rule:#2A3950;
+  --tick:#4CC593; --tick-soft:#173A2E; --navy:#B9CCF0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1622; --sheet:#162132; --ink:#E6ECF4; --muted:#9AA8BD; --rule:#2A3950;
+  --tick:#4CC593; --tick-soft:#173A2E; --navy:#B9CCF0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--f-body);margin:0}
+.wrap{max-width:980px;margin:0 auto;padding:36px 16px 96px;display:grid;gap:48px}
+h1,h2,h3{font-family:var(--f-display);font-stretch:112%;text-wrap:balance;margin:0;line-height:1.1}
+a{color:var(--tick)}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+header{display:grid;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:32px}
+header h1{font-size:clamp(34px,6.4vw,60px);font-weight:800;max-width:15ch}
+.price{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--f-display);font-stretch:112%;font-weight:800}
+.price b{font-size:clamp(44px,8vw,72px);color:var(--tick);line-height:1}
+.price span{font-size:clamp(18px,2.6vw,24px);color:var(--muted);font-weight:600}
+.lede{font-size:clamp(17px,2.1vw,19px);max-width:60ch;margin:0}
+.wa{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#0B2B17;text-decoration:none;font:600 clamp(17px,2.2vw,19px)/1.2 var(--f-body);padding:15px 24px;border-radius:8px;box-shadow:0 4px 14px rgba(37,211,102,.35);justify-self:start}
+.wa:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wa svg{width:28px;height:28px;flex:none}
+.note{margin:0;font:500 13px var(--f-mono);color:var(--tick)}
+.sec-head{display:grid;gap:10px;margin-bottom:20px}
+.sec-head h2{font-size:clamp(26px,3.6vw,34px);font-weight:800}
+.sec-head p{margin:0;color:var(--muted);max-width:62ch}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:20px;display:grid;gap:8px;min-width:0}
+.card h3{font-size:19px;font-weight:600}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.steps{margin:0;padding-left:20px;display:grid;gap:8px}
+.tiers{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tier{border-left:3px solid var(--tick);padding:4px 0 4px 18px}
+.tier h3{font-size:18px;font-weight:600;margin-bottom:4px}
+.tier p{margin:0;color:var(--muted);font-size:15px}
+.tier .r{font:500 14px var(--f-mono);color:var(--tick);display:block;margin-bottom:4px}
+.close{background:var(--navy);color:var(--paper);border-radius:8px;padding:32px 24px;display:grid;gap:16px}
+.close h2{font-size:clamp(24px,3.4vw,32px);font-weight:800;color:var(--paper)}
+.close p{margin:0;max-width:60ch;opacity:.92}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:18px}
+.wa-float{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:900;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.28)}
+.wa-float svg{width:34px;height:34px}
+@media (max-width:480px){.wa{width:100%;justify-content:center;padding:15px 16px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <span class="eyebrow">Virtual assistant · Admin · Data entry</span>
+    <h1>Get the busywork off your plate.</h1>
+    <div class="price"><b>$2</b><span>per hour, starting price</span></div>
+    <p class="lede">My team and I handle the routine admin that eats your week, so you can focus on customers. Small tasks or ongoing help, for small businesses in the US, UK and Australia.</p>
+    <a class="wa" href="https://wa.me/919809970890?text=Hi%20Shinod%2C%20I%27m%20interested%20in%20your%20virtual%20assistant%20service.%20I%20need%20help%20with%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.05 2.6c2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.21-4.24 9.46-9.44 9.46zm8.03-17.49A11.27 11.27 0 0 0 12.04.7C5.8.7.71 5.78.71 12.04c0 2 .52 3.95 1.52 5.67L.62 23.3l5.72-1.5a11.3 11.3 0 0 0 5.7 1.45h.01c6.25 0 11.34-5.08 11.34-11.33 0-3.03-1.18-5.88-3.32-8.02z"/></svg>Tell us what you need on WhatsApp</a>
+    <p class="note">We usually reply within a few hours, UK and US time.</p>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">What we can take off your hands</span>
+      <h2>Tasks we handle</h2>
+    </div>
+    <div class="grid">
+      <article class="card"><h3>Data entry &amp; spreadsheets</h3><p>Typing up lists, updating Excel and Google Sheets, cleaning and merging data.</p></article>
+      <article class="card"><h3>Invoices &amp; payment reminders</h3><p>Creating invoices, logging payments and sending polite reminders when they're overdue.</p></article>
+      <article class="card"><h3>Inbox &amp; calendar</h3><p>Sorting email, drafting routine replies and keeping your calendar in order.</p></article>
+      <article class="card"><h3>Online research &amp; lead lists</h3><p>Finding suppliers, prospects or contact details and putting them in a clean sheet.</p></article>
+      <article class="card"><h3>Documents &amp; formatting</h3><p>Tidying Word and Google Docs, converting PDFs, building simple templates.</p></article>
+      <article class="card"><h3>CRM &amp; online tools</h3><p>Updating your CRM, Google Workspace, listings and other day-to-day systems.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple, agreed up front</h2>
+      <p>We confirm the task and the price before any work starts. No long contracts.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier"><span class="r">from $2/hour</span><h3>Virtual assistant tasks</h3><p>Routine admin, data entry and research, done by my team with my oversight.</p></div>
+      <div class="tier"><span class="r">fixed price</span><h3>Bookkeeping &amp; Excel</h3><p>QuickBooks and Xero cleanup, reconciliations and spreadsheet fixes, done by me as a certified QuickBooks ProAdvisor. <a href="https://psfin.github.io/portfolio/">See samples</a>.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps to get started</h2>
+    </div>
+    <ol class="steps">
+      <li>Message us on WhatsApp with the task and how often you need it.</li>
+      <li>We reply with a clear price and timeline.</li>
+      <li>We get to work. Wherever your tools allow it, you add us by invite or delegate access instead of sharing passwords.</li>
+    </ol>
+  </section>
+
+  <section class="close">
+    <h2>Have a task in mind?</h2>
+    <p>Send a short note about what you need. A rough description is enough to get a quote.</p>
+    <a class="wa" href="https://wa.me/919809970890?text=Hi%20Shinod%2C%20I%27m%20interested%20in%20your%20virtual%20assistant%20service.%20I%20need%20help%20with%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.05 2.6c2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.21-4.24 9.46-9.44 9.46zm8.03-17.49A11.27 11.27 0 0 0 12.04.7C5.8.7.71 5.78.71 12.04c0 2 .52 3.95 1.52 5.67L.62 23.3l5.72-1.5a11.3 11.3 0 0 0 5.7 1.45h.01c6.25 0 11.34-5.08 11.34-11.33 0-3.03-1.18-5.88-3.32-8.02z"/></svg>Get a quote on WhatsApp</a>
+    <p>Or email <a href="mailto:info@psfinsolutions.com" style="color:var(--paper)">info@psfinsolutions.com</a></p>
+  </section>
+
+  <footer>Shinod Vengaloor &amp; team · PS Fin Solutions · WhatsApp +91 98099 70890 · info@psfinsolutions.com</footer>
+</main>
+<a class="wa-float" href="https://wa.me/919809970890?text=Hi%20Shinod%2C%20I%27m%20interested%20in%20your%20virtual%20assistant%20service.%20I%20need%20help%20with%3A%20" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36A9.43 9.43 0 0 1 2.6 12.04C2.6 6.83 6.84 2.6 12.05 2.6c2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.21-4.24 9.46-9.44 9.46zm8.03-17.49A11.27 11.27 0 0 0 12.04.7C5.8.7.71 5.78.71 12.04c0 2 .52 3.95 1.52 5.67L.62 23.3l5.72-1.5a11.3 11.3 0 0 0 5.7 1.45h.01c6.25 0 11.34-5.08 11.34-11.33 0-3.03-1.18-5.88-3.32-8.02z"/></svg></a>
+<script>
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'',gc=window.goatcounter;if(!gc||!gc.count)return;
+if(h.indexOf('wa.me/')>-1)gc.count({path:'va-click-whatsapp',title:'VA WhatsApp tap',event:true});
+else if(h.indexOf('mailto:')===0)gc.count({path:'va-click-email',title:'VA email tap',event:true});},true);
+</script>
+<script data-goatcounter="https://psfin.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
