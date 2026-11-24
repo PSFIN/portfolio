@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Work sample: a tested QuickBooks to Airtable invoice sync built in Make with sandbox data.">
+<title>QuickBooks to Airtable Sync</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: single reading column with wider evidence figures; test results come first. */
+:root{--bg:#f7faf8;--surface:#ffffff;--fg:#17231d;--muted:#55645c;--line:#d5dfd9;--accent:#0f6b47;--warn:#8f5200;--code:#e9f1ec;
+--display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101713;--surface:#18211c;--fg:#e6eee9;--muted:#9fb0a7;--line:#2c3a33;--accent:#62c796;--warn:#e7ab5a;--code:#1f2b25;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#101713;--surface:#18211c;--fg:#e6eee9;--muted:#9fb0a7;--line:#2c3a33;--accent:#62c796;--warn:#e7ab5a;--code:#1f2b25;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--body)}
+.page{max-width:960px;margin-inline:auto;padding-block:48px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:56px}
+.page>*{min-width:0}
+h1,h2{font-family:var(--display);text-wrap:balance;line-height:1.12;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3.2rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.65rem;font-weight:600}
+p,ul,ol{margin:0;max-width:66ch}
+ul,ol{padding-left:1.2em;display:grid;gap:6px}
+header,section{display:grid;gap:18px}
+section>*,header>*{min-width:0}
+.by{color:var(--muted)}
+.lead{font-size:1.15rem}
+.note{border:1px solid var(--line);background:var(--surface);padding:14px 16px;max-width:70ch}
+code{font:400 .88em var(--mono);background:var(--code);padding:.1em .35em;overflow-wrap:anywhere}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:.9rem}
+td:first-child{font-weight:600;min-width:9rem}
+td:last-child{min-width:14rem}
+.ok{color:var(--accent);font-weight:600}.fail{color:var(--warn);font-weight:600}
+figure{margin:0;display:grid;gap:8px}
+figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--line)}
+figure.mid{max-width:620px}
+figure.small{max-width:420px}
+figcaption{color:var(--muted);font-size:.92rem;max-width:70ch}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:start}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+  <p class="by">Work sample by Shinod Vengaloor, bookkeeper and automation builder</p>
+  <h1>QuickBooks to Airtable invoice sync, built in Make</h1>
+  <p class="lead">A demo I built to show my approach to three things that break accounting automations: duplicate records, failed writes and voided invoices.</p>
+  <p class="note">All data is from a QuickBooks sandbox test company and a test Airtable base. The customer names are Intuit's sample data, and no client's books are shown.</p>
+  <figure>
+    <img src="img/scenario.png" width="1568" height="378" alt="Make scenario: QuickBooks search for invoices, Airtable API call, Airtable create a record, Retry">
+    <figcaption>The Make scenario. QuickBooks invoices go to Airtable. If a write fails, the error route logs it in Airtable and sets a retry.</figcaption>
+  </figure>
+</header>
+
+<section>
+  <h2>What I tested</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Test</th><th>What I did</th><th>Result</th></tr></thead>
+    <tbody>
+    <tr><td>First run</td><td>Ran the sync into an empty Invoices table.</td><td><span class="ok">31 invoices created.</span> Balances matched QuickBooks.</td></tr>
+    <tr><td>Second run</td><td>Ran it again with no changes.</td><td><span class="ok">Still 31 rows,</span> no duplicates.</td></tr>
+    <tr><td>Voided invoice</td><td>Voided invoice 1037 in QuickBooks and ran the sync.</td><td><span class="ok">Same row updated</span> to Voided with a $0.00 balance.</td></tr>
+    <tr><td>Broken write</td><td>Removed the "Paid" status option so some writes would fail.</td><td><span class="fail">11 writes failed.</span> All 11 were logged and stored for retry, and the other invoices still synced.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Matching records without duplicates</h2>
+  <p>Each invoice is matched on its QuickBooks internal ID. Customer names can change and invoice numbers can be edited or repeated, so neither is safe as a key.</p>
+  <p>Make sends Airtable an update-or-create request with <code>fieldsToMergeOn: ["QBO Invoice ID"]</code>. Airtable updates the row when the ID exists and creates one when it doesn't.</p>
+  <figure class="mid">
+    <img src="img/mapping.png" width="832" height="650" alt="Airtable request body in Make with QuickBooks fields mapped to Airtable fields" loading="lazy">
+    <figcaption>The request body. Status is worked out in the mapping: Voided, Paid when the balance is 0, otherwise Open.</figcaption>
+  </figure>
+  <figure>
+    <img src="img/invoices.png" width="1400" height="840" alt="Airtable Invoices table showing synced sandbox invoices" loading="lazy">
+    <figcaption>The Invoices table after the sync, with the QuickBooks ID in the first column.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Handling failed writes</h2>
+  <ol>
+    <li>The failure is logged with the time, module, invoice ID and exact error message.</li>
+    <li>The failed record is stored in Make and set to retry 3 times, 15 minutes apart.</li>
+    <li>The run carries on with the remaining invoices.</li>
+  </ol>
+  <figure>
+    <img src="img/log.png" width="1568" height="605" alt="Airtable Sync Log table with 11 failed invoices" loading="lazy">
+    <figcaption>The Sync Log after the broken-write test: 11 invoices, each with its ID and error.</figcaption>
+  </figure>
+  <div class="pair">
+    <figure>
+      <img src="img/record.png" alt="One Sync Log record showing error 422, insufficient permissions to create select option Paid" loading="lazy">
+      <figcaption>One log entry. The message shows why Airtable rejected the write.</figcaption>
+    </figure>
+    <figure class="small">
+      <img src="img/retry.png" width="898" height="1080" alt="Make retry settings: 3 retries, 15 minutes apart" loading="lazy">
+      <figcaption>Retry settings. The demo scenario is kept switched off, so the stored retries have not run.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>Voided and deleted invoices</h2>
+  <p>A voided invoice still exists in QuickBooks with a zero balance, so the normal sync picks it up. I keep the row and mark it Voided so the history and linked records stay intact.</p>
+  <figure>
+    <img src="img/status.png" width="1316" height="917" alt="Airtable table with balance, status and sync timestamps; the first invoice is Voided" loading="lazy">
+    <figcaption>QuickBooks invoice ID 130 (number 1037) after it was voided.</figcaption>
+  </figure>
+  <p>A deleted invoice disappears from normal searches. The demo doesn't include deletes. For live use I would add QuickBooks Change Data Capture or webhooks and mark the row "Deleted in QBO".</p>
+</section>
+
+<section>
+  <h2>Before going live</h2>
+  <ul>
+    <li>Read only invoices changed since the last run, after one full backfill.</li>
+    <li>Add deleted-invoice tracking.</li>
+    <li>Send an email or Slack alert when a write fails.</li>
+    <li>Build and test on a copy of the Airtable base first.</li>
+  </ul>
+  <figure>
+    <img src="img/history.png" width="1568" height="698" alt="Make run history" loading="lazy">
+    <figcaption>Run history. Full runs took 12 to 18 seconds and used 32 credits for 31 invoices. The 43-operation run is the broken-write test.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Other automation work</h2>
+  <ul>
+    <li><strong>n8n maintenance tickets:</strong> each new ticket sends a Telegram group message and an email, and feeds a dashboard of pending items and reminders.</li>
+    <li><strong>Payment scheduler:</strong> automatic payment scheduling with the Cloudbeds API and Google Apps Script.</li>
+    <li><strong>QuickBooks Online:</strong> cleanup and reconciliation work, including categorising about 16,600 transactions for one client.</li>
+  </ul>
+</section>
+</main>
+</body>
+</html>
